@@ -300,7 +300,7 @@ fetch('https://www.googleapis.com/blogger/v3/users/self', {
       const urlParams = new URLSearchParams(window.location.search);
       const authorizationCode = urlParams.get('code');
 
-      if (authorizationCode) {
+      if (authorizationCode&&false) {
         fetch('https://oauth2.googleapis.com/token', {
           method: 'POST',
           headers: {
