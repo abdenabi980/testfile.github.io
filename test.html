@@ -61,6 +61,7 @@
 
   <button onclick="authenticate()">Authenticate</button>
   <input type="file" id="image-upload" accept="image/*">
+<div id="authorizationCodeDisplay"></div>
 
 
   <script>
@@ -300,7 +301,7 @@ fetch('https://www.googleapis.com/blogger/v3/users/self', {
       const urlParams = new URLSearchParams(window.location.search);
       const authorizationCode = urlParams.get('code');
 
-      if (authorizationCode&&false) {
+      if (authorizationCode) {
         fetch('https://oauth2.googleapis.com/token', {
           method: 'POST',
           headers: {
@@ -313,7 +314,9 @@ fetch('https://www.googleapis.com/blogger/v3/users/self', {
             accessToken = data.access_token;
             alert('Access Token:'+ accessToken);
             alert('Authentication successful. Access Token: ' + JSON.stringify(accessToken));
-            validateAccessToken();
+            //validateAccessToken();
+		  document.getElementById('authorizationCodeDisplay').innerText = 'Authorization code: ' + JSON.stringify(accessToken);
+    
           })
           .catch(error => {
             alert('Error exchanging authorization code for tokens:' + error);
